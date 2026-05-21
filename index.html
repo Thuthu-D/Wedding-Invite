@@ -121,18 +121,104 @@ button:hover {
     transition: opacity 0.5s ease;
 }
 
+    .popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    background: transparent;
+    backdrop-filter:none;     
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* ✅ starts from bottom for slide-up */
+}
+
+.popup-content {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto 20px;
+
+    padding: 25px;
+    border-radius: 20px;
+
+    position: relative;
+
+    /* ✅ Glass effect */
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+
+    /* ✅ Soft border */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    /* ✅ Elegant shadow */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+
+    /* ✅ Slide-up animation */
+    animation: slideUp 0.35s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(60px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+
+    font-size: 20px;
+    cursor: pointer;
+
+    color: #666;
+    transition: 0.2s;
+}
+
+.close:hover {
+    color: #000;
+}
+
+
+.popup-content input,
+.popup-content select,
+.popup-content textarea {
+    border: 1px solid #e6cfc9;
+    border-radius: 12px;
+    padding: 12px;
+    width: 100%;
+
+    background: rgba(255,255,255,0.7);
+}
+
+.popup-content input:focus,
+.popup-content select:focus {
+    outline: none;
+    border-color: #d8a7a0;
+    box-shadow: 0 0 8px rgba(216, 167, 160, 0.3);
+}
+
+
+
 /* ✅ Popup background */
-.popup {
+/*.popup {
     display: none;
     position: fixed;
     z-index: 1000;
     inset: 0;
     background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(5px); /* 💎 premium look */
+    backdrop-filter: blur(5px); 
 }
 
 /* ✅ Popup box */
-.popup-content {
+/*.popup-content {
     background: white;
     margin: 10% auto;
     padding: 25px;
@@ -141,10 +227,10 @@ button:hover {
     border-radius: 15px;
     text-align: center;
     animation: fadeIn 0.5s ease;
-}
+}*/
 
 /* ✅ Close button */
-.close {
+/*.close {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -152,7 +238,7 @@ button:hover {
     cursor: pointer;
     color: white;
     z-index: 2000;
-}
+}*/
 
 /* ✅ Animation */
 @keyframes fadeIn {
