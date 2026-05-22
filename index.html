@@ -467,7 +467,8 @@ form button:hover {
     inset: 0;
     z-index: 9999;
 
-    background: rgba(0,0,0,0.95);
+    background: linear-gradient(to right, #fff0f5, #fdf6ff);
+
 
     justify-content: center;
     align-items: center;
@@ -533,6 +534,45 @@ form button:hover {
     cursor: pointer;
 }
 
+.heart-float {
+    position: fixed;
+    top: -10px;
+    width: 12px;
+    height: 12px;
+    background: #E0BFB8;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    z-index: 10000; /* ✅ VERY IMPORTANT */
+    animation: fall linear infinite;
+}
+
+/* Heart shape */
+.heart-float::before,
+.heart-float::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #E0BFB8;
+    border-radius: 50%;
+}
+
+.heart-float::before {
+    top: -6px;
+    left: 0;
+}
+
+.heart-float::after {
+    left: -6px;
+    top: 0;
+}
+
+/* Falling animation */
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(45deg);
+    }
+}
 
 
 </style>
@@ -646,27 +686,27 @@ form button:hover {
     <div class="gallery-collage">
 
         <div class="gallery-item">
-            <img src="images/photo1.jpg" class="photo">
+            <img src="C:\Users\Thuthuzad\OneDrive - Axiz\Pictures\OIP.jpg" class="photo">
             <p class="quote">"I found the one my heart loves."</p>
         </div>
 
         <div class="gallery-item">
-            <img src="images/photo2.jpg" class="photo">
+            <img src="C:\Users\Thuthuzad\OneDrive - Axiz\Pictures\OIP.jpg" class="photo">
             <p class="quote">"Every love story is beautiful, but ours is my favorite."</p>
         </div>
 
         <div class="gallery-item">
-            <img src="images/photo3.jpg" class="photo">
+            <img src="C:\Users\Thuthuzad\OneDrive - Axiz\Pictures\OIP.jpg" class="photo">
             <p class="quote">"Together is a beautiful place to be."</p>
         </div>
 
         <div class="gallery-item">
-            <img src="images/photo4.jpg" class="photo">
+            <img src="C:\Users\Thuthuzad\OneDrive - Axiz\Pictures\OIP.jpg" class="photo">
             <p class="quote">"You are my today and all of my tomorrows."</p>
         </div>
 
         <div class="gallery-item">
-            <img src="images/photo5.jpg" class="photo">
+            <img src="C:\Users\Thuthuzad\OneDrive - Axiz\Pictures\OIP.jpg" class="photo">
             <p class="quote">"Forever starts with you."</p>
         </div>
 
@@ -783,6 +823,7 @@ function openGallery() {
     const popup = document.getElementById("galleryPopup");
     popup.style.display = "flex";
 
+    createHearts(); // 💖 start hearts
     startGalleryAnimation();
 }
 
@@ -791,6 +832,8 @@ function closeGallery() {
     popup.style.display = "none";
 
     animationRunning = false; // stop animation if closed
+    document.querySelectorAll(".heart-float").forEach(h => h.remove());
+
 }
 
 function startGalleryAnimation() {
@@ -828,6 +871,19 @@ function startGalleryAnimation() {
 }
 </script>
 
+<script>
+function createHearts() {
+    for (let i = 0; i < 20; i++) {
+        let heart = document.createElement("div");
+        heart.classList.add("heart-float");
+
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+        document.getElementById("galleryPopup").appendChild(heart);
+  }
+}
+</script>
 
 
 </body>
