@@ -259,11 +259,94 @@ button:hover {
     .card { padding: 25px 18px; margin: 10px; }
     .names { font-size: 36px; }
 }
+
+/* Welcome Screen */
+#welcome-screen{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(rgba(255,248,243,.75),rgba(255,248,243,.75)),
+               url("flower.jpeg") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    z-index:9999;
+    padding:30px;
+}
+
+.welcome-content{
+    max-width:500px;
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(6px);
+    padding:40px 30px;
+    border-radius:20px;
+}
+
+.welcome-content h1{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.welcome-text{
+    font-size:20px;
+    line-height:1.7;
+    margin-bottom:35px;
+}
+
+#enterBtn{
+    background:#9c6b4c;
+    color:white;
+    border:none;
+    padding:16px 40px;
+    border-radius:40px;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#enterBtn:hover{
+    transform:scale(1.05);
+}
+
+#invitation{
+    animation:fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+   
 </style>
 
 </head>
 
 <body>
+
+   <!-- Welcome Screen -->
+<div id="welcome-screen">
+    <div class="welcome-content">
+        <h1>You're Invited</h1>
+
+        <p class="welcome-text">
+            We, <strong>Nwabisa </strong> &amp;
+            <strong>Sibusiso </strong>,
+            warmly invite you to celebrate our love as we begin our forever together.
+        </p>
+
+        <button id="enterBtn">💍 Open Invitation</button>
+    </div>
+</div>
+
 
 <div class="card">
 
@@ -277,11 +360,10 @@ button:hover {
 
     <div class="subtitle">invite you to celebrate their wedding</div>
 
-     <audio autoplay loop>
+     <audio id="bgMusic" loop>
         <source src="Feza-Umaqondana-(JustNaija.com).mp3" type="audio/mpeg">
-     </audio>
+    </audio>
 
-   
     <!-- Bouquet Photo -->
     <div class="photos">
         <img src="flower.jpeg" alt="Wedding Bouquet">
@@ -361,6 +443,20 @@ setInterval(() => {
 }, 1000);
 </script>
 
+<script>
+const btn = document.getElementById("enterBtn");
+const invitation = document.getElementById("invitation");
+const welcome = document.getElementById("welcome-screen");
+const music = document.getElementById("bgMusic");
+
+btn.addEventListener("click", () => {
+    music.play();
+
+    welcome.style.display = "none";
+    invitation.style.display = "block";
+});
+</script>
+   
 </body>
 </html>
 
